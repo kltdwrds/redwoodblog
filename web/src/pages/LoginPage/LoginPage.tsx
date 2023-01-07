@@ -16,10 +16,19 @@ import { toast, Toaster } from '@redwoodjs/web/toast'
 
 const LoginPage = () => {
   const { isAuthenticated, logIn } = useAuth()
-
+  const redirectTo = new URLSearchParams(window.location.search).get(
+    'redirectTo'
+  )
+  console.log(redirectTo)
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(routes.home())
+      console.log('isAuthenticated', redirectTo)
+      if (redirectTo) {
+        navigate(redirectTo)
+        return
+      } else {
+        navigate(routes.home())
+      }
     }
   }, [isAuthenticated])
 
@@ -34,6 +43,7 @@ const LoginPage = () => {
       password: data.password,
     })
 
+    console.log('onSubmit')
     if (response.message) {
       toast(response.message)
     } else if (response.error) {
