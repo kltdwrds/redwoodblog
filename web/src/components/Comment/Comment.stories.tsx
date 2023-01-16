@@ -4,8 +4,8 @@
 // ```tsx
 // import type { ComponentStory } from '@storybook/react'
 //
-// export const generated: ComponentStory<typeof Article> = (args) => {
-//   return <Article {...args} />
+// export const generated: ComponentStory<typeof Comment> = (args) => {
+//   return <Comment {...args} />
 // }
 // ```
 //
@@ -13,21 +13,21 @@
 
 import type { ComponentMeta } from '@storybook/react'
 
-import Article from './Article'
+import Comment from './Comment'
 
 export const generated = () => {
   return (
-    <Article
-      article={{
-        id: '1',
-        title: 'test title',
-        body: 'test',
+    <Comment
+      comment={{
+        name: 'Kyle',
+        body: 'This is fantastic',
+        createdAt: '2022-01-01T12:22:22Z',
       }}
     />
   )
 }
 
 export default {
-  title: 'Components/Article',
-  component: Article,
-} as ComponentMeta<typeof Article>
+  title: 'Components/Comment',
+  component: Comment,
+} as ComponentMeta<typeof Comment>
